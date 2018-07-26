@@ -1,0 +1,4 @@
+f = open("JigPuz").read()
+a = []
+a = f.replace(",","").replace("\n","").split(" ")
+print a
