@@ -1,0 +1,37 @@
+f = open("JigPuz").read()
+a = []
+a = f.replace("," , "").replace("\n" , "").split(" ")
+
+i = 1
+b = 1
+ks = 3 #key size
+print(len(a))
+#a = set(a)
+#a = list(a)
+print(len(a))
+
+res = a[0]
+key=res[-ks:]
+j = 0
+while(j < len(a)):
+	fragment = a[j]
+	if key in fragment and fragment.endswith(key) == False:
+		res+=fragment[fragment.find(key)+ks:]
+		key=res[(-ks):]
+		j = 0
+		a.remove(fragment)
+	else:
+		j += 1
+key=res[0:ks]
+j = 0
+while (j < len(a)):
+	fragment=a[j]
+	if key in fragment and fragment.startswith(key) == False:
+		res=fragment[0:fragment.find(key)]+res
+		key=res[0:ks]
+		j = 0
+		a.remove(fragment)
+	else:
+		j += 1
+
+print res
